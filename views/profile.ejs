@@ -1,0 +1,41 @@
+<%- include("partials/header") %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title text-center">User Profile</h1>
+          <% if (profileImg) { %>
+          <img
+            src="<%= profileImg %>"
+            alt="Profile Picture"
+            class="img-fluid rounded-circle"
+          />
+          <% } %>
+          <div>
+            <h2>Name: <%= name %></h2>
+            <% if (username) { %>
+            <p>Email: <%= username %></p>
+            <% } %>
+          </div>
+
+          <h3>Posts:</h3>
+          <% if (posts.length > 0) { %> <% posts.forEach(function(post) { %>
+          <div class="post">
+            <h4><%= post.title %></h4>
+            <p><%= post.content %></p>
+          </div>
+          <% });} else { %>
+          <p>No posts found.</p>
+          <% } %>
+          <form action="/logout" method="POST">
+            <button type="submit" class="btn btn-primary">Logout</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>
